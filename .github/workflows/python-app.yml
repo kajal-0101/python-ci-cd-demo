@@ -25,7 +25,6 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        # pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
@@ -39,6 +38,10 @@ jobs:
         pip install pytest
         export PYTHONPATH=src
         pytest
+    - name: Generate Documentation
+      run: |
+        pydoc -w src
+        pydoc -w test
     - name: Run on Heroku
       env:
         HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
