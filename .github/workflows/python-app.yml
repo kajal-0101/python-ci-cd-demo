@@ -41,7 +41,7 @@ jobs:
         pytest
     - name: Run on Heroku
       env:
-        HEROKU_ID: ${{ secrets.HEROKU_ID }}
+        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
         HEROKU_TOKEN: ${{ secrets.HEROKU_TOKEN }}
       if: job.status == 'success'
       run: |
