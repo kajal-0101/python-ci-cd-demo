@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="vieport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Welcome to Calculator and Todo App</title>
+        <link rel="icon" href="{{ 'static/images/icon.png' }}" type="image/gif" sizes="16x16">
+    </head>
+    <body>
+        <h1>Calculator App</h1>
+        <form action="/send" method="POST">
+            <label for="one">First Number</label>
+            <input type="text" placeholder="Enter the first number" name="num1">
+
+            <label for="two">Second Number</label>
+            <input type="text" placeholder="Enter the second number" name="num2">
+
+            <label for="Operation">Choose an Operation</label>
+            <select name="Operation">
+                <option value="add">Addition</option>
+                <option value="sub">Substraction</option>
+                <option value="mul">Multiplication</option>
+                <option value="div">Division</option>
+                <option value="mod">Modulus</option>
+                <option value="pow">Power</option>
+            </select>
+
+            <button type="submit">Calculate</button>
+        </form>
+
+        <div>
+            {{ result }}
+            <a href="/refresh_calculator">Refresh</a>
+            <a href="/">Todo App</a>
+        </div>
+    </body>
+</html>
