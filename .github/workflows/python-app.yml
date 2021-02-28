@@ -36,8 +36,10 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest
+        pip install pytest-cov
         export PYTHONPATH=src
         pytest -v
+        pytest test_app.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
     - name: Generate Documentation
       run: |
         pydoc -w src
