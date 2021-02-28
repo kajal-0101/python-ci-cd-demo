@@ -1,5 +1,4 @@
-from app import index
+from app import about
 
-
-def test_index():
-    assert index() == "Hello World!"
+def test_about():
+    assert about() == "Trying Something new!"

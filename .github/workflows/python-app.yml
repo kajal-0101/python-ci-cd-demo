@@ -18,7 +18,7 @@ jobs:
     - uses: actions/checkout@v2
     - run: |
         git fetch --prune --unshallow
-    - name: Set up Python 3.9
+    - name: Set up Python 3.9.2
       uses: actions/setup-python@v2
       with:
         python-version: 3.9.2
@@ -37,7 +37,7 @@ jobs:
       run: |
         pip install pytest
         export PYTHONPATH=src
-        pytest
+        pytest -v
     - name: Generate Documentation
       run: |
         pydoc -w src

@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="vieport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome to TODO App</title>
+        <link rel="icon" href="{{ 'static/images/icon.png' }}" type="image/gif" sizes="16x16">
+        <!-- UIkit CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.17/dist/css/uikit.min.css" />
+
+        <!-- UIkit JS -->
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.17/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.17/dist/js/uikit-icons.min.js"></script>
+    </head>
+    <body>
+        <h1 class="uk-text-center uk-heading-medium uk-heading-divider">TODO App</h1>
+        <div class="uk-container uk-container-small">
+            <form action="/add" method="post">
+                <label for="title" class="uk-text-emphasis">Todo Title</label>
+                <input type="text" name="title" placeholder="Enter Todo..." class="uk-input uk-form-width-large" id="title">
+                <br>
+                <button class="uk-button uk-button-primary uk-button-small" type="submit">Add</button>
+            </form>
+        </div>
+        <br>
+        <br>
+        <div class="uk-container uk-container-large">
+            {% for todo in todo_list %}
+            <div class="uk-section uk-section-default">
+                <div class="uk-container">
+                    <p class="uk-text-large">{{todo.ids}} | {{todo.title}}</h3>
+                    
+                    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid>
+                        <div>
+                            {% if todo.complete == False %}
+                                <div>
+                                    Not Complete
+                                </div>
+                            {% else %}
+                                <div class="uk-label-success">
+                                    Complete
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <a class="uk-button uk-button-secondary uk-button-small" href="/update/{{ todo.ids }}">Update</a>
+                        </div>
+                        <div>
+                            <a class="uk-button uk-button-danger uk-button-small" href="/delete/{{ todo.ids }}">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </body>
+</html>
