@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import re
 
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 app.config['SQL_ALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -63,7 +64,7 @@ def get_operand():
         num2 = request.form['num2']
         num1 = num1.strip()
         num2 = num2.strip()
-        regex = re.compile('[@_!#$%^&*()<>?/\|}{~:]')
+        regex = re.compile('''[@_!#$%^&*()<>?/\|}{~:]''')
         if (regex.search(num1) == None) and (regex.search(num2) == None) and(num1 != "") and (num2 != ""):
             if (num1.isalpha() == False) and (num2.isalpha() == False):
                 operator = request.form['Operation']
@@ -85,7 +86,7 @@ def get_operand():
                 else:
                     if operator == "pow":
                         val = power(num1, num2)
-                        return render_template("calculator.html", result=val)
+                        return render_template("calculator.html", result=val, )
             else:
                 val = "Only numeric value allowed"
                 return render_template("calculator.html", result=val)

@@ -3,35 +3,74 @@
         <meta charset="UTF-8">
         <meta name="vieport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Welcome to Calculator and Todo App</title>
+        <title>Welcome to TODO and Calculator App</title>
         <link rel="icon" href="{{ 'static/images/icon.png' }}" type="image/gif" sizes="16x16">
+        <!-- UIkit CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.17/dist/css/uikit.min.css" />
+
+        <!-- UIkit JS -->
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.17/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.17/dist/js/uikit-icons.min.js"></script>
     </head>
     <body>
-        <h1>Calculator App</h1>
-        <form action="/send" method="POST">
-            <label for="one">First Number</label>
-            <input type="text" placeholder="Enter the first number" name="num1">
+        <h1 class="uk-text-center uk-heading-medium uk-heading-divider">Calculator App</h1>
+        <div class="uk-section uk-section-default">
+            <div class="uk-container uk-container-small">
+                <form action="/send" method="POST">
+                    <div class="uk-grid-match uk-child-width-1-2@m" uk-grid>
+                        <div>
+                            <label for="one" class="uk-text-emphasis">First Number</label>
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Enter the first number" name="num1" class="uk-input uk-form-width-large" value="{{ request.form['num1'] }}">
+                        </div>                
+                    </div>
 
-            <label for="two">Second Number</label>
-            <input type="text" placeholder="Enter the second number" name="num2">
-
-            <label for="Operation">Choose an Operation</label>
-            <select name="Operation">
-                <option value="add">Addition</option>
-                <option value="sub">Substraction</option>
-                <option value="mul">Multiplication</option>
-                <option value="div">Division</option>
-                <option value="mod">Modulus</option>
-                <option value="pow">Power</option>
-            </select>
-
-            <button type="submit">Calculate</button>
-        </form>
-
-        <div>
-            {{ result }}
-            <a href="/refresh_calculator">Refresh</a>
-            <a href="/">Todo App</a>
+                    <div class="uk-grid-match uk-child-width-1-2@m" uk-grid>
+                        <div>
+                            <label for="two" class="uk-text-emphasis">Second Number</label>
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Enter the second number" name="num2" class="uk-input uk-form-width-large" value="{{ request.form['num2'] }}">
+                        </div>
+                    </div>
+                    <div class="uk-grid-match uk-child-width-1-2@m" uk-grid>
+                        <div>
+                            <label for="Operation" class="uk-text-emphasis">Choose an Operation</label>
+                        </div>
+                        <div>
+                            <select name="Operation" class="uk-select">
+                                <option value="add">Addition</option>
+                                <option value="sub">Substraction</option>
+                                <option value="mul">Multiplication</option>
+                                <option value="div">Division</option>
+                                <option value="mod">Modulus</option>
+                                <option value="pow">Power</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="uk-container uk-container-small">
+                        <div class="uk-container uk-container-small uk-text-center">
+                            <br>
+                            <button type="submit" class="uk-button uk-button-primary uk-button-small">Calculate</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="uk-grid-small uk-section">
+                    <div class="uk-grid-small uk-child-width-expand@s uk-text-center">
+                        <p class="uk-section-muted">Result: <span>{{ result }}</span></p>
+                    </div>
+                </div>
+                <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid>
+                    <div>
+                        <a href="/refresh_calculator" class="uk-button uk-button-secondary uk-button-small">Refresh</a>
+                    </div>
+                    <div>
+                        <a href="/" class="uk-button uk-button-secondary uk-button-small">Todo App</a>
+                    </div>  
+                </div>
+            </div>
         </div>
+        
     </body>
 </html>
