@@ -1,4 +1,4 @@
 from app import about
 
 def test_about():
-    assert about() == "Trying Something new!"
+    assert about() == "About Page for testing"
