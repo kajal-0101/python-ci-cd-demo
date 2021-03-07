@@ -39,7 +39,8 @@ jobs:
         pip install pytest-cov
         export PYTHONPATH=src
         pytest -v
-        pytest test/test_app.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+        # pytest test/test_app.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+        pytest --cov=./ --cov-report=xml
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
     - name: Run on Heroku
