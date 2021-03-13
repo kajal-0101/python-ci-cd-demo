@@ -31,7 +31,8 @@ def add():
         db.session.commit()
         return redirect(url_for("index"))
     else:
-        return redirect(url_for("index"))
+        val = "Todo Title cannot be empty, Please try again!"
+        return render_template("index.html", error=val)
 
 @app.route("/update/<int:todo_id>")
 def update(todo_id):

@@ -13,47 +13,67 @@
     </head>
     <body>
         <h1 class="uk-text-center uk-heading-medium uk-heading-divider">TODO App</h1>
-        <div class="uk-container uk-container-small">
-            <form action="/add" method="post">
-                <label for="title" class="uk-text-emphasis">Todo Title</label>
-                <input type="text" name="title" placeholder="Enter Todo..." class="uk-input uk-form-width-large" id="title">
-                <br>
-                <br>
-                <button class="uk-button uk-button-primary uk-button-small" type="submit">Add Todo</button>
-                <a href="/calculator" class="uk-button uk-button-primary uk-button-small">Calculator App</a>
-            </form>
-        </div>
-        <br>
-        <br>
-        <div class="uk-container uk-container-large">
-            {% for todo in todo_list %}
-            <div class="uk-section uk-section-default">
-                <div class="uk-container">
-                    <p class="uk-text-large">{{todo.ids}} | {{todo.title}}</h3>
-                    
-                    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid>
+        <div class="uk-section uk-section-default">
+            <div class="uk-container uk-container-xsmall">
+                <form action="/add" method="post">
+                    <div class="uk-grid-match uk-child-width-1-2@m" uk-grid>
                         <div>
-                            {% if todo.complete == False %}
-                                <div>
-                                    Not Complete
-                                </div>
-                            {% else %}
-                                <div class="uk-label-success">
-                                    Complete
-                                </div>
-                            {% endif %}
+                            <label for="title" class="uk-text-emphasis uk-text-large">Todo Title</label>
                         </div>
                         <div>
-                            <a class="uk-button uk-button-secondary uk-button-small" href="/update/{{ todo.ids }}">Update</a>
-                        </div>
-                        <div>
-                            <a class="uk-button uk-button-danger uk-button-small" href="/delete/{{ todo.ids }}">Delete</a>
+                            <input type="text" name="title" placeholder="Enter Todo..." class="uk-input uk-form-width-large" id="title">
                         </div>
                     </div>
+                    <div class="uk-container uk-text-center uk-container-xsmall">
+                        <div class="uk-section">
+                            <button class="uk-button uk-button-primary uk-button-small" type="submit">Add Todo</button>
+                            <a href="/calculator" class="uk-button uk-button-primary uk-button-small">Calculator App</a>
+                        </div>
+                    </div>
+                </form>
+                {% if error is defined %}
+                    <div class="uk-container">
+                        <div class="uk-alert-danger" uk-alert>
+                            <a class="uk-alert-close" uk-close></a>
+                            <div class="uk-grid-match uk-child-width-1-2@m" uk-grid>
+                                <div>
+                                    <p>Message: {{error}}</p>
+                                </div>
+                                <div class="uk-container">
+                                    <a class="uk-button uk-button-deafult uk-button-small" href="/">Refresh</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="uk-container uk-container-xsmall">
+                    {% for todo in todo_list %}
+                        <div class="uk-section uk-section-default">
+                            <p class="uk-text-large">{{todo.ids}} | {{todo.title}}</h3>
+                            <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid>
+                                <div>
+                                    {% if todo.complete == False %}
+                                        <div>
+                                            Not Complete
+                                        </div>
+                                    {% else %}
+                                        <div class="uk-label-success">
+                                            Complete
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <a class="uk-button uk-button-secondary uk-button-small" href="/update/{{ todo.ids }}">Update</a>
+                                </div>
+                                <div>
+                                    <a class="uk-button uk-button-danger uk-button-small" href="/delete/{{ todo.ids }}">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
-            {% endfor %}
         </div>
-
     </body>
 </html>

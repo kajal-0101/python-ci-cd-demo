@@ -15,7 +15,7 @@
     <body>
         <h1 class="uk-text-center uk-heading-medium uk-heading-divider">Calculator App</h1>
         <div class="uk-section uk-section-default">
-            <div class="uk-container uk-container-small">
+            <div class="uk-container uk-container-xsmall">
                 <form action="/send" method="POST">
                     <div class="uk-grid-match uk-child-width-1-2@m" uk-grid>
                         <div>
@@ -58,8 +58,18 @@
                 </form>
                 <div class="uk-grid-small uk-section">
                     <div class="uk-grid-small uk-child-width-expand@s uk-text-center">
-                        <p class="uk-section-muted">Result: <span>{{ result }}</span></p>
-                    </div>
+                        {% if result is not defined %}
+                            <p></p>
+                        {% elif result == "Only numeric value allowed" or result == "No special symbols must be there as well as the fields cannot be blank" %}
+                            <div class="uk-alert-danger" uk-alert>
+                                <p>Result: <span>{{ result }}</span></p>
+                            </div>    
+                        {% else %}
+                            <div class="uk-alert-success" uk-alert>
+                                <p>Result: <span>{{ result }}</span></p>
+                            </div>
+                        {% endif %}
+                    </div>    
                 </div>
                 <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid>
                     <div>
